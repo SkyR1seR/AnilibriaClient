@@ -1,0 +1,24 @@
+﻿<Window x:Class="anime.animeCountSelectWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:anime"
+        mc:Ignorable="d"
+        Title="Загрузка списка" Height="250" Width="350">
+    <Grid>
+        <Polygon Fill="DarkRed" Points="320,60,0,240,0,55"></Polygon>
+        <Polygon Fill="DarkRed" Points="150,110,180,120,155,140" Margin="158,75,-37,-51"/>
+        <Polygon Fill="DarkRed" Points="150,110 180,110 155,90" Margin="115,50,-113,-10"/>
+        <Polygon Fill="DarkRed" Points="160,110 180,130 155,140" Margin="24,34,-154,-130"/>
+        <Polygon Fill="DarkRed" Points="150,120 180,120 155,140" Margin="146,-30,-172,-69"/>
+        <Polygon Fill="DarkRed" Points="150,110 180,120 155,140" Margin="-82,99,53,-24"/>
+        <TextBlock Margin="20" HorizontalAlignment="Center" Foreground="DarkRed" FontSize="18" FontWeight="Bold">Сколько аниме нужно загрузить?</TextBlock>
+        <StackPanel Margin="10" VerticalAlignment="Center">
+            <RadioButton IsChecked="True" Margin="1" Foreground="White" FontSize="16" FontWeight="Bold" x:Name="fast">Новинки (быстро)</RadioButton>
+            <RadioButton Margin="1" Foreground="White" FontSize="16" FontWeight="Bold" x:Name="normal">Часть</RadioButton>
+            <RadioButton Margin="1" Foreground="White" FontSize="16" FontWeight="Bold" x:Name="high">Все (медленно)</RadioButton>
+        </StackPanel>
+        <Button Padding="5" x:Name="genresClear" Click="genresClear_Click" Margin="0,5" Background="DarkRed" BorderBrush="Red" Width="150" VerticalAlignment="Bottom" BorderThickness="2" Foreground="White">Загрузить</Button>
+    </Grid>
+</Window>

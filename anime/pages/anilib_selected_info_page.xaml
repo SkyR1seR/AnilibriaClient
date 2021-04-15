@@ -1,0 +1,51 @@
+﻿<Page x:Class="anime.pages.anilib_selected_info_page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:anime.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="anilib_selected_info_page">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.47*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Column="0" Grid.Row="1" Margin="10" BorderBrush="Black" BorderThickness="2" Background="Black">
+            <ProgressBar
+                Grid.Row="1"
+            x:Name="loadBar"
+            Style="{StaticResource MaterialDesignCircularProgressBar}"
+            Width="200"
+            Height="200"
+            Value="35"
+            IsIndeterminate="True" />
+        </Border>
+        <Border Grid.Column="0" Grid.Row="1" Margin="10" BorderBrush="Black" BorderThickness="2">
+            <Image  HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding img}"></Image>
+        </Border>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" FontSize="24" HorizontalAlignment="Center" HorizontalContentAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Content="{Binding names[0]}"></Label>
+        </Grid>
+        
+        <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label HorizontalAlignment="Center" FontSize="20" Content="{Binding seriesText}" Foreground="White"></Label>
+            <TextBlock  Margin="5,0" x:Name="genres" TextWrapping="Wrap" FontSize="14" TextAlignment="Center" Text="Жанры: " Foreground="White"></TextBlock>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Margin="20">
+            <TextBlock Margin="5" TextWrapping="Wrap" FontSize="16" Text="{Binding desc}"></TextBlock>
+        </ScrollViewer>
+        
+    </Grid>
+</Page>

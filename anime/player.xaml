@@ -1,0 +1,87 @@
+﻿<Window x:Class="anime.player"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:anime" xmlns:lvs="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
+        xmlns:vls="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        
+        mc:Ignorable="d"
+        Title="Плеер" Height="450" Width="800">
+    <Grid Background="Black">
+        <lvs:VideoView x:Name="Player">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="70" MaxHeight="80"/>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition MinHeight="90" MaxHeight="100"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Margin="5"  x:Name="ui2">
+                    <TextBlock x:Name="animeName" TextWrapping="Wrap" Foreground="White" FontSize="16" HorizontalAlignment="Left"></TextBlock>
+                    <Label x:Name="serName" Foreground="White" FontSize="18" HorizontalAlignment="Left"></Label>
+                </StackPanel>
+                
+                <ProgressBar
+                    x:Name="loadBar"
+                    Style="{StaticResource MaterialDesignCircularProgressBar}"
+                    Width="200"
+                    Height="200"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Grid.Row="1"
+                    Value="35"
+                    IsIndeterminate="True" />
+                <StackPanel  x:Name="ui3"  Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Button  Click="fsBtn_Click" x:Name="fsBtn" Style="{StaticResource MaterialDesignIconButton}">
+                        <materialDesign:PackIcon Kind="Fullscreen" />
+                    </Button>
+                    <Button Visibility="Collapsed" Click="fsBackBtn_Click" x:Name="fsBackBtn" Style="{StaticResource MaterialDesignIconButton}">
+                        <materialDesign:PackIcon Kind="FullscreenExit" />
+                    </Button>
+                </StackPanel>
+
+                
+
+                <StackPanel VerticalAlignment="Bottom" Grid.Row="2" x:Name="ui1">
+                    <StackPanel Orientation="Vertical">
+                        <Label Margin="0,0,0,-50" x:Name="timeLeft" Foreground="White" HorizontalAlignment="Left" Content="00:00"></Label>
+                        <Label x:Name="time" Foreground="White" HorizontalAlignment="Right" Content="00:00"></Label>
+                    </StackPanel>
+
+                    <Slider x:Name="slider" ValueChanged="slider_ValueChanged" PreviewMouseUp="slider_MouseLeftButtonDown" PreviewMouseDown="slider_PreviewMouseDown" Minimum="0" Maximum="0" Value="0" />
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Center" x:Name="previewBtn" Click="previewBtn_Click" Visibility="Visible" Style="{StaticResource MaterialDesignIconButton}">
+                            <materialDesign:PackIcon Kind="SkipBackward" />
+                        </Button>
+                        <Button VerticalAlignment="Center" x:Name="playBtn" Click="playBtn_Click" Style="{StaticResource MaterialDesignIconButton}">
+                            <materialDesign:PackIcon Kind="Play" />
+                        </Button>
+                        <Button VerticalAlignment="Center" x:Name="pauseBtn" Click="playBtn_Click" Visibility="Collapsed" Style="{StaticResource MaterialDesignIconButton}">
+                            <materialDesign:PackIcon Kind="Pause" />
+                        </Button>
+                        <Button VerticalAlignment="Center" x:Name="nextBtn" Click="nextBtn_Click" Visibility="Visible" Style="{StaticResource MaterialDesignIconButton}">
+                            <materialDesign:PackIcon Kind="SkipForward" />
+                        </Button>
+                        <Button Margin="10,0,0,0" VerticalAlignment="Center" x:Name="volumeBtn" Click="volumeBtn_Click"  Visibility="Visible" Style="{StaticResource MaterialDesignIconButton}">
+                            <materialDesign:PackIcon Kind="VolumeHigh" />
+                        </Button>
+                        <Slider Width="50" Minimum="0" Maximum="100" Value="50" VerticalAlignment="Center" x:Name="soundSlider"></Slider>
+                    </StackPanel>
+                </StackPanel>
+                <Label x:Name="UIvis" Background="#02000000" Grid.RowSpan="3" Visibility="Collapsed" PreviewMouseMove="Window_MouseMove"></Label>
+            </Grid>
+        </lvs:VideoView>
+        
+        
+    </Grid>
+</Window>

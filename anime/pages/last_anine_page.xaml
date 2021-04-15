@@ -1,0 +1,96 @@
+﻿<Page x:Class="anime.pages.last_anine_page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:anime.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="last_anine_page">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.17*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*" MaxHeight="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label x:Name="loadCount" FontSize="18" Foreground="White">В базу загружено: 0 аниме</Label>
+            <ProgressBar
+                Grid.Row="1"
+            x:Name="loadBar"
+            Style="{StaticResource MaterialDesignCircularProgressBar}"
+            Width="200"
+            Height="200"
+            Value="35"
+            IsIndeterminate="True" />
+            <ListView Grid.Row="1" Margin="0,0" ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="list" SelectionChanged="list_SelectionChanged" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Background="#7F8B0000">
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Grid Height="100" Width="70">
+                                    <ProgressBar
+                                            Grid.Row="1"
+                                        Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                        Width="50"
+                                        Height="50"
+                                        Value="35"
+                                        IsIndeterminate="True" />
+                                    <Image Source="{Binding release.img}"></Image>
+                                </Grid>
+                                
+                                <StackPanel Margin="10">
+                                    <Label Content="{Binding release.names[0]}" Foreground="Black" FontWeight="Bold" FontSize="16" Padding="5"></Label>
+                                    <Label Content="{Binding release.seriesText}" Foreground="White" FontSize="12" Padding="5"></Label>
+                                    <Label Content="{Binding release.status}" Foreground="White" FontSize="12" Padding="5"></Label>
+                                </StackPanel>
+                            </StackPanel>
+                            <Label Height="2" Width="2400" Background="Black"></Label>
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="120"/>
+                <RowDefinition MaxHeight="35"/>
+                <RowDefinition/>
+                <RowDefinition MaxHeight="50"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <StackPanel>
+                    <Label FontSize="20" FontWeight="Bold">Поиск по названию</Label>
+                    <TextBox x:Name="nameSearchTB" TextChanged="nameSearchTB_TextChanged" FontSize="18" Padding="3" VerticalContentAlignment="Center" BorderBrush="DarkRed" BorderThickness="2"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="0,5">
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <ToggleButton
+                        x:Name="isFinished"
+                        VerticalAlignment="Center"
+                        Checked="CheckBox_Checked"
+                        Unchecked="CheckBox_Checked"
+                        Content=""
+                    Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                    ToolTip="Default ToggleButton Style" HorizontalAlignment="Left" Background="DarkRed" Foreground="DarkRed"/>
+                        <Label FontSize="20" Foreground="DarkRed" FontWeight="Bold">Релиз завершен</Label>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <Label Grid.Row="1" FontSize="20" FontWeight="Bold">Жанры</Label>
+            <ListBox Grid.Row="2"  Background="DarkRed" x:Name="genrList" SelectionMode="Single" Foreground="{x:Null}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox x:Name="genrName" Margin="3" Foreground="White" FontSize="16" VerticalContentAlignment="Bottom" FontWeight="Bold" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked" Content="{Binding}"></CheckBox>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Grid.Row="3" Padding="5" x:Name="genresClear" Click="genresClear_Click" Background="DarkRed" BorderBrush="Red" BorderThickness="2" Foreground="White">Очистить поиск</Button>
+        </Grid>
+    </Grid>
+</Page>
